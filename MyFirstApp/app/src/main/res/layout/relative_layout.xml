@@ -3,25 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="115dp"
-        android:layout_marginEnd="202dp"
-        android:layout_marginBottom="318dp"
-        android:text="Button" />
+        android:layout_alignParentTop="true"
+        android:text="Btn"
+        android:textColor="@color/teal_200"
+        android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button15"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="230dp"
-        android:layout_marginBottom="240dp"
-        android:text="TextView" />
+        android:layout_alignStart="@+id/btn"
+        android:layout_alignEnd="@+id/btn"
+        android:layout_below="@+id/btn"
+        android:text="Btn"
+        android:textColor="@color/teal_700"
+        android:textSize="25sp" />
+
+
 </RelativeLayout>

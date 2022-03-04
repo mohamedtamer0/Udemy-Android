@@ -5,9 +5,13 @@
       <map>
         <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/frame_layout.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/linear_layout.xml" value="0.33" />
-        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/relative_layout.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/lin_lay_adv.xml" value="0.33" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/linear_layout.xml" value="0.14" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/linear_layout_adv.xml" value="0.25" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/relative_layout.xml" value="0.33" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/spacing.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/table_layout.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/unit.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>
@@ -16,5 +20,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.14" />
+      </ProjectState>
+    </option>
   </component>
 </project>
