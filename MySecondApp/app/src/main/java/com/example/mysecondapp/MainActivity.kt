@@ -8,7 +8,8 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity() {
 
     lateinit var textTitle: TextView
-    lateinit var buttonClick : Button
+    lateinit var buttonClick: Button
+    var counter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +20,11 @@ class MainActivity : AppCompatActivity() {
 
         buttonClick = findViewById(R.id.btn_click)
         buttonClick.text = "Don't Click Here"
+
+        buttonClick.setOnClickListener {
+            counter++
+            textTitle.text = "Counter $counter"
+        }
 
 
     }
