@@ -4,4 +4,6 @@
     <string name="enter_your_age">Enter Your Age</string>
     <string name="enter_your_username">username</string>
     <string name="btn_txt">submit</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
 </resources>

@@ -5,4 +5,6 @@
     <string name="enter_your_age">ادخل عمرك</string>
     <string name="enter_your_username">اسم المستخدم</string>
     <string name="btn_txt">تسجيل</string>
+    <string name="male">ذكر</string>
+    <string name="female">انثي</string>
 </resources>
