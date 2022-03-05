@@ -2,6 +2,8 @@ package com.example.mysecondapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
@@ -21,11 +23,20 @@ class MainActivity : AppCompatActivity() {
         buttonClick = findViewById(R.id.btn_click)
         buttonClick.text = "Don't Click Here"
 
-        buttonClick.setOnClickListener {
-            counter++
-            textTitle.text = "Counter $counter"
-        }
+        Log.d("MyTest","Counter: $counter")
+
+//        buttonClick.setOnClickListener {
+//            counter++
+//            textTitle.text = "Counter $counter"
+//        }
 
 
     }
+
+    fun onClickedBtn(view: View) {
+        counter++
+        Log.d("MyTest","Clicked & Counter: $counter")
+        textTitle.text = "Counter $counter"
+    }
+
 }
