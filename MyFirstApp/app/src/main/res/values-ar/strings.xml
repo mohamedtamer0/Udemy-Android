@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyFirstApp</string>
+    <string name="enter_your_info">ادخل معلوماتك</string>
+    <string name="enter_your_age">ادخل عمرك</string>
+</resources>
