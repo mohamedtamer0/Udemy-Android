@@ -3,4 +3,6 @@
     <string name="app_name">MyFirstApp</string>
     <string name="enter_your_info">ادخل معلوماتك</string>
     <string name="enter_your_age">ادخل عمرك</string>
+    <string name="enter_your_username">اسم المستخدم</string>
+    <string name="btn_txt">تسجيل</string>
 </resources>

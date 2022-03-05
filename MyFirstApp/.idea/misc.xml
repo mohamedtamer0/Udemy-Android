@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/drawable/my_bk.xml" value="0.1825" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/activity_main.xml" value="0.14" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/const_layout.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/frame_layout.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/lin_lay_adv.xml" value="0.33" />
         <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyFirstApp/app/src/main/res/layout/linear_layout.xml" value="0.14" />

@@ -2,4 +2,6 @@
     <string name="app_name">MyFirstApp</string>
     <string name="enter_your_info">Enter Your Info</string>
     <string name="enter_your_age">Enter Your Age</string>
+    <string name="enter_your_username">username</string>
+    <string name="btn_txt">submit</string>
 </resources>
