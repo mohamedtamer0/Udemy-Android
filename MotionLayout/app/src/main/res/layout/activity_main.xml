@@ -4,29 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    app:layoutDescription="@xml/activity_main_scene">
+    app:layoutDescription="@xml/activity_main_scene"
+    tools:context=".MainActivity">
 
 
     <TextView
         android:id="@+id/textHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World"
         android:background="@color/teal_200"
         android:gravity="center"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:text="Hello World" />
 
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:text="Hello World"-->
-<!--        android:background="@color/teal_200"-->
-<!--        android:gravity="center"-->
-<!--        android:padding="10dp"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:text="Hello World"-->
+    <!--        android:background="@color/teal_200"-->
+    <!--        android:gravity="center"-->
+    <!--        android:padding="10dp"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

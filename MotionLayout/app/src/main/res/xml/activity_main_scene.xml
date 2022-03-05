@@ -9,7 +9,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -18,9 +18,9 @@
             android:id="@+id/textHello"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent" />
 
     </ConstraintSet>
 
@@ -28,7 +28,7 @@
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@+id/start">
         <OnSwipe
-            app:touchAnchorId="@+id/textHello"
-            app:dragDirection="dragUp"/>
+            app:dragDirection="dragUp"
+            app:touchAnchorId="@+id/textHello" />
     </Transition>
 </MotionScene>
