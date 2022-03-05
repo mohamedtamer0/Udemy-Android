@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MySecondApp</string>
+    <string name="hello">Hello</string>
+    <string name="click_me">Click Me</string>
 </resources>
