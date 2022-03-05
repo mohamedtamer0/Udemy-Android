@@ -41,7 +41,7 @@
         android:layout_margin="10dp"
         android:text="@string/btn_txt"
         android:textColor="#000"
-        android:background="@drawable/my_bk"
+        android:background="@drawable/my_btn"
         app:backgroundTint="@null"
         />
 
