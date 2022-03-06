@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">MultiUi</string>
     <string name="txt_btn">Show Second Screen</string>
+    <string name="close">Close Activity</string>
+
 </resources>
