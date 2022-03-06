@@ -7,15 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.myfragments.databinding.FragmentTwoBinding
 
 class TwoFragment : Fragment() {
+
+    lateinit var binding: FragmentTwoBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         Log.d(OneFragment.LOG_TAG, "onCreateView")
-        return inflater.inflate(R.layout.fragment_two, container, false)
+        binding = FragmentTwoBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 
