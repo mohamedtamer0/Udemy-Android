@@ -1,6 +1,7 @@
 package com.example.multiui
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -57,9 +58,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun addCallbacks() {
         binding.button.setOnClickListener {
-            val intent = Intent(this, MainActivity2::class.java)
-            val name = binding.textName.text.toString()
-            intent.putExtra(extraName, name)
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://google.com")
+            startActivity(intent)
+        }
+
+
+        binding.btnCall.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL)
+            val phoneNumber = binding.textPhone.text.toString()
+            intent.data = Uri.parse("tel:$phoneNumber")
             startActivity(intent)
         }
     }
