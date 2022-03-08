@@ -4,19 +4,42 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.example.myfragments.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var binding: ActivityMainBinding
     val myFirstFragment = OneFragment()
     val mySecondFragment = TwoFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initSubView()
         initButton()
+
+        addNavigationListener()
     }
+
+
+    private fun addNavigationListener() {
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.pageHome -> {
+                    replaceFragment(myFirstFragment)
+                    true
+                }
+                R.id.pageMusic -> {
+                    replaceFragment(mySecondFragment)
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
 
     private fun initButton() {
         findViewById<Button>(R.id.button_change).setOnClickListener {

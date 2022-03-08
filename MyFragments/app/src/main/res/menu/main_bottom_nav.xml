@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/pageHome"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="home" />
+    <item
+        android:id="@+id/pageMusic"
+        android:icon="@drawable/ic_baseline_music_note_24"
+        android:title="music" />
+    <item
+        android:id="@+id/pageSettings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="settings" />
+
+</menu>
