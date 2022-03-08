@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyMaterialDesign</string>
+    <string name="label">username</string>
 </resources>
