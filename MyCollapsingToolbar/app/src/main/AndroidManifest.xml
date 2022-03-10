@@ -10,22 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCollapsingToolbar">
         <activity
-            android:exported="true"
             android:name=".ScrollingActivity"
+            android:exported="false"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/Theme.MyCollapsingToolbar.NoActionBar" >
+            android:theme="@style/Theme.MyCollapsingToolbar.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-
-
-        <activity
-            android:name=".MainActivity">
-
         </activity>
     </application>
 
