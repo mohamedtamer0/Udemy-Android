@@ -3,6 +3,8 @@ package com.example.mymaterialdesign
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.mymaterialdesign.databinding.ActivityMainBinding
@@ -25,6 +27,32 @@ class MainActivity : AppCompatActivity() {
             showMeDialog()
         }
 
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_bar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_delete -> {
+                Toast.makeText(this, "delete clicked", Toast.LENGTH_LONG).show()
+                return true
+            }
+
+            R.id.action_refresh -> {
+                Toast.makeText(this, "refresh  clicked", Toast.LENGTH_LONG).show()
+                return true
+            }
+
+            R.id.action_settings -> {
+                Toast.makeText(this, "settings clicked", Toast.LENGTH_LONG).show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
