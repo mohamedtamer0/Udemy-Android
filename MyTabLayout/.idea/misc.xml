@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyTabLayout/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyTabLayout/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyTabLayout/app/src/main/res/layout/fragment_profile.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/Alwqar/Videos/Udemy-Android/MyTabLayout/app/src/main/res/layout/fragment_settings.xml" value="0.2518518518518518" />
       </map>
     </option>
   </component>
