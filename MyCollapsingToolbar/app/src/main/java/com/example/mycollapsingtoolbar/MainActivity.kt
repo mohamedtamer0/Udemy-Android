@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.mycollapsingtoolbar.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +16,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initSpinner()
+        loadImage()
     }
+
+
+    private fun loadImage() {
+        val url = "https://c4.wallpaperflare.com/wallpaper/500/442/354/outrun-vaporwave-hd-wallpaper-thumb.jpg"
+        Glide.with(this).load(url)
+            .placeholder(R.drawable.ic_baseline_cloud_download_24)
+            .error(R.drawable.ic_baseline_error_24)
+            .into(binding.imageView)
+    }
+
+
 
     private fun initSpinner() {
         val items = listOf("A", "B", "C", "D")
