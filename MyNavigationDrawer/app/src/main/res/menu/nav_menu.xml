@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_share"
+        android:icon="@drawable/ic_baseline_share_24"
+        android:title="Share" />
+
+    <item
+        android:id="@+id/nav_message"
+        android:icon="@drawable/ic_baseline_message_24"
+        android:title="Message" />
+
+    <item android:title="Profile">
+        <menu>
+            <item
+                android:id="@+id/nav_person"
+                android:icon="@drawable/ic_baseline_person_24"
+                android:title="My Profile" />
+
+        </menu>
+    </item>
+
+</menu>
