@@ -18,6 +18,15 @@ class MainActivity : AppCompatActivity() {
         val user = binding.user
         val pass = binding.pass
 
+
+        val shardPreferences: SharedPreferences =
+            getSharedPreferences("myData", Context.MODE_PRIVATE)
+        val userName = shardPreferences.getString("u", "None")
+        val password = shardPreferences.getString("p", "")
+        user.setText(userName)
+        pass.setText(password)
+
+
         binding.login.setOnClickListener {
             val shardPreferences: SharedPreferences =
                 getSharedPreferences("myData", Context.MODE_PRIVATE)
@@ -29,13 +38,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Data Saved", Toast.LENGTH_SHORT).show()
         }
 
-        binding.load.setOnClickListener {
-            val shardPreferences: SharedPreferences =
-                getSharedPreferences("myData", Context.MODE_PRIVATE)
-            val userName = shardPreferences.getString("u", "None")
-            val password = shardPreferences.getString("p", "")
-            user.setText(userName)
-            pass.setText(password)
-        }
+
     }
 }
