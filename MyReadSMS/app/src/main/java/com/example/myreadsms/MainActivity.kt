@@ -17,20 +17,23 @@ class MainActivity : AppCompatActivity() {
         getSms()
     }
 
+
     private fun getSms() {
         val uri = Uri.parse("content://sms//inbox")
         val projection = arrayOf(SMS_SENDER, SMS_BODY)
         val cursor: Cursor = contentResolver.query(uri, projection, null, null, null)!!
         while (cursor.moveToNext()) {
             for (i in 0 until cursor.columnCount) {
-                Log.i(LOG_TAG, "$i - ${cursor.getColumnName(i)} - ${cursor.getString(i)} ")
+                Log.i(LOG_TAG, "$i - ${cursor.getColumnName(i)} - ${cursor.getString(i)}")
             }
         }
     }
 
     companion object {
-        private const val LOG_TAG = "MAIN_ACTIVTY"
+        private const val LOG_TAG = "MAIN_ACTIVITY"
         private const val SMS_BODY = "body"
         private const val SMS_SENDER = "address"
     }
+
+
 }
