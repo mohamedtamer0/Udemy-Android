@@ -23,13 +23,20 @@ class MainActivity : AppCompatActivity() {
         binding.btnFetch.setOnClickListener {
             //makeRequest()
 
-            makeRequestUsingOKHTTP()
+            makeRequestUsingOKHTTP(binding.inputName.text.toString())
         }
     }
 
-    private fun makeRequestUsingOKHTTP() {
-        val request = Request.Builder().url("https://v2.jokeapi.dev/joke/Any").build()
-        client.newCall(request).enqueue(object:Callback {
+    private fun makeRequestUsingOKHTTP(name: String) {
+
+        val url = HttpUrl.Builder()
+            .scheme("https")
+            .host("api.nationalize.io")
+            .addQueryParameter("name", name)
+            .build()
+
+        val request = Request.Builder().url(url).build()
+        client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.d(LOG_TAG, "onFailure: ${e.message}")
             }
@@ -42,6 +49,8 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
+
+
 
     private fun makeRequest() {
 //        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
