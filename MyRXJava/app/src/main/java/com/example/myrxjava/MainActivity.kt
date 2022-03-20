@@ -21,28 +21,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun foo() {
-        val happy = Observable.just(5,10,50,100,660,990)
+        val observable = Observable.just(5, 10, 50, 100, 660, 990)
 
-        val observer = object : Observer<Int> {
-            override fun onSubscribe(d: Disposable) {
-                Log.d(TAG, "onSubscribe: ")
-            }
-
-            override fun onNext(t: Int) {
-                Log.d(TAG, "onNext: $t")
-            }
-
-            override fun onError(e: Throwable) {
-                Log.d(TAG, "onError: ")
-            }
-
-            override fun onComplete() {
-                Log.d(TAG, "onComplete: ")
-            }
-
+        observable.subscribe { t ->
+            Log.d(TAG, "onNext: $t")
         }
 
-        happy.subscribe(observer)
+
+//        val observer = object : Observer<Int> {
+//            override fun onSubscribe(d: Disposable) {
+//                Log.d(TAG, "onSubscribe: ")
+//            }
+//
+//            override fun onNext(t: Int) {
+//                Log.d(TAG, "onNext: $t")
+//            }
+//
+//            override fun onError(e: Throwable) {
+//                Log.d(TAG, "onError: ")
+//            }
+//
+//            override fun onComplete() {
+//                Log.d(TAG, "onComplete: ")
+//            }
+//
+//        }
+//
+//        happy.subscribe(observer)
+
+
     }
 
 
