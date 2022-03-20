@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun foo() {
-        val observable = Observable.just(5, 10, 50, 100, 660, 990)
+        val list = listOf(1,2,3,4,5,6,7,8,9,10,11,12)
+        val observable = Observable.fromIterable(list)
 
         observable.subscribe { t ->
             Log.d(TAG, "onNext: $t")
