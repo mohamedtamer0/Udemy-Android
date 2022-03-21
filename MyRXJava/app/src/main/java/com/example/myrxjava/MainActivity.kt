@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
         //val list = listOf(1,2,3,4,5,6,7,8,9,10,11,12)
         //val observable = Observable.fromIterable(list).repeat(3)
         //val observable = Observable.range(10,20).repeat(2)
-        val observable = Observable.interval(5,TimeUnit.SECONDS)
+        //val observable = Observable.interval(1,TimeUnit.SECONDS).take(5,TimeUnit.SECONDS)
+        val observable = Observable.range(1,100).takeLast(20)
 
         observable.subscribe { t ->
             Log.d(TAG, "onNext: $t")
