@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
         //val observable = Observable.interval(1,TimeUnit.SECONDS).take(5,TimeUnit.SECONDS)
         //val observable = Observable.range(1,100).takeLast(20)
         //val observable = Observable.timer(10,TimeUnit.SECONDS)
-        val observable = Observable.fromIterable(list).distinct()
+        //val observable = Observable.fromIterable(list).distinct()
+        val observable = Observable.fromIterable(list).buffer(3)
 
         observable.subscribe { t ->
             Log.d(TAG, "onNext: $t")
