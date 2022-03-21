@@ -22,11 +22,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun foo() {
-        //val list = listOf(1,2,3,4,5,6,7,8,9,10,11,12)
+        val list = listOf(1,2,3,4,5,6,7,8,9,6,7,2,5,8,10,11,12)
         //val observable = Observable.fromIterable(list).repeat(3)
         //val observable = Observable.range(10,20).repeat(2)
         //val observable = Observable.interval(1,TimeUnit.SECONDS).take(5,TimeUnit.SECONDS)
-        val observable = Observable.range(1,100).takeLast(20)
+        //val observable = Observable.range(1,100).takeLast(20)
+        //val observable = Observable.timer(10,TimeUnit.SECONDS)
+        val observable = Observable.fromIterable(list).distinct()
 
         observable.subscribe { t ->
             Log.d(TAG, "onNext: $t")
