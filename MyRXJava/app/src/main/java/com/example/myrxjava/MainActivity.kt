@@ -7,6 +7,7 @@ import com.example.myrxjava.databinding.ActivityMainBinding
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,8 +22,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun foo() {
-        val list = listOf(1,2,3,4,5,6,7,8,9,10,11,12)
-        val observable = Observable.fromIterable(list)
+        //val list = listOf(1,2,3,4,5,6,7,8,9,10,11,12)
+        //val observable = Observable.fromIterable(list).repeat(3)
+        //val observable = Observable.range(10,20).repeat(2)
+        val observable = Observable.interval(5,TimeUnit.SECONDS)
 
         observable.subscribe { t ->
             Log.d(TAG, "onNext: $t")
