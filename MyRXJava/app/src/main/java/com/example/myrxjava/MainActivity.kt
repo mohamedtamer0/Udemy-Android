@@ -32,8 +32,10 @@ class MainActivity : AppCompatActivity() {
         //val observable = Observable.fromIterable(list).buffer(3)
         //val observable = Observable.range(2, 20).map { it * 2 }
 
-        val someObservable = Observable.interval(500, TimeUnit.MILLISECONDS).take(10).map { it * 10 }
-        val observable = Observable.interval(1, TimeUnit.SECONDS).take(10).map { it * 2 }.mergeWith(someObservable)
+        //val someObservable = Observable.interval(500, TimeUnit.MILLISECONDS).take(10).map { it * 10 }
+        //val observable = Observable.interval(1, TimeUnit.SECONDS).take(10).map { it * 2 }.mergeWith(someObservable)
+
+        val observable = Observable.range(1,1000)
 
         observable.subscribe { t ->
             Log.d(TAG, "onNext: $t")
