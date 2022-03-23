@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.kotlin.toObservable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.subjects.AsyncSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
 import javax.security.auth.Subject
@@ -34,10 +35,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun foo() {
 
-        val observable = Observable.interval(1, TimeUnit.SECONDS).take(10)
-        val subject = PublishSubject.create<Long>()
-        observable.subscribe(subject)
-        Thread.sleep(2500)
+        val observable = Observable.interval(1, TimeUnit.MILLISECONDS).take(10)
+        val subject = AsyncSubject.create<Long>()
+
+       observable.subscribe(subject)
+
+
         subject.subscribe(
             {
                 Log.d(TAG, "next: $it")
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "error: ${it?.message} ")
             }
         )
+
 
 
 //        val list = listOf("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
