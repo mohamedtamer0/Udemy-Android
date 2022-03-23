@@ -5,17 +5,20 @@ import android.os.Bundle
 import android.util.Log
 import com.example.myrxjava.databinding.ActivityMainBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Observer
-import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.core.*
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
+import kotlin.math.log
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+
+    lateinit var mDisposable: Disposable
+    lateinit var compositeDisposable: CompositeDisposable
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -25,6 +28,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun foo() {
+
+        val single = Single.just(5)
+        single.subscribe(object : SingleObserver<Int> {
+            override fun onSubscribe(d: Disposable) {
+                Log.d(TAG, "onSubscribe: ")
+            }
+
+            override fun onSuccess(t: Int) {
+                Log.d(TAG, "onSuccess: $t")
+            }
+
+            override fun onError(e: Throwable) {
+                Log.d(TAG, "onError: ${e?.message}")
+            }
+
+        })
+
+
         //val list = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 6, 7, 2, 5, 8, 10, 11, 12)
         //val observable = Observable.fromIterable(list).repeat(3)
         //val observable = Observable.range(10,20).repeat(2)
@@ -38,11 +59,14 @@ class MainActivity : AppCompatActivity() {
         //val someObservable = Observable.interval(500, TimeUnit.MILLISECONDS).take(10).map { it * 10 }
         //val observable = Observable.interval(1, TimeUnit.SECONDS).take(10).map { it * 2 }.mergeWith(someObservable)
 
-        val observable = Observable.range(1,1000)
+        //val observable = Observable.range(1, 1000)
 
-        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { t ->
-            Log.d(TAG, "onNext: $t - ${Thread.currentThread().name}")
-        }
+//        compositeDisposable.add(
+//            observable.subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread()).subscribe { t ->
+//                    Log.d(TAG, "onNext: $t - ${Thread.currentThread().name}")
+//                }
+//        )
 
 
 //        val observer = object : Observer<Int> {
@@ -69,6 +93,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        compositeDisposable.dispose()
+        super.onDestroy()
+    }
 
 //    private fun foo() {
 //        var foo = 5
