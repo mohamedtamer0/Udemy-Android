@@ -3,6 +3,7 @@ package com.example.myrxjava
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.widget.doOnTextChanged
 import com.example.myrxjava.databinding.ActivityMainBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.*
@@ -28,6 +29,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun foo() {
+        val completable = Completable.create { emitter ->
+            binding.editTxt.doOnTextChanged { text, start, before, count ->
+                if (text.toString() == "000") {
+                    emitter.onComplete()
+                }
+            }
+
+        }
+
+        completable.subscribe(object : CompletableObserver {
+            override fun onSubscribe(d: Disposable) {
+
+            }
+
+            override fun onComplete() {
+                Log.d(TAG, "onComplete")
+            }
+
+            override fun onError(e: Throwable) {
+                Log.d(TAG, "onError")
+            }
+
+        })
+
 
         val single = Single.just(5)
         single.subscribe(object : SingleObserver<Int> {
