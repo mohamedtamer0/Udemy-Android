@@ -12,7 +12,9 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.kotlin.toObservable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
+import javax.security.auth.Subject
 import kotlin.math.log
 
 
@@ -32,21 +34,35 @@ class MainActivity : AppCompatActivity() {
 
     private fun foo() {
 
+        val observable = Observable.interval(1, TimeUnit.SECONDS).take(10)
+        val subject = PublishSubject.create<Long>()
+        observable.subscribe(subject)
+        Thread.sleep(2500)
+        subject.subscribe(
+            {
+                Log.d(TAG, "next: $it")
+            },
+            {
+                Log.d(TAG, "error: ${it?.message} ")
+            }
+        )
 
-        val list = listOf("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
 
-        list.toObservable() // extension function for Iterables
-            .filter { it.length >= 5 }
-            .subscribeBy(  // named arguments for lambda Subscribers
-                onNext = { println(it) },
-                onError =  { it.printStackTrace() },
-                onComplete = { println("Done!") }
-            )
+//        val list = listOf("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
+//
+//        list.toObservable() // extension function for Iterables
+//            .filter { it.length >= 5 }
+//            .subscribeBy(  // named arguments for lambda Subscribers
+//                onNext = { println(it) },
+//                onError =  { it.printStackTrace() },
+//                onComplete = { println("Done!") }
+//            )
 
 
 //        val observable = Observable.interval(1, TimeUnit.SECONDS).take(10).publish()
 //
 //        observable.connect()
+//
 //
 //        observable.subscribe(
 //            { t ->
