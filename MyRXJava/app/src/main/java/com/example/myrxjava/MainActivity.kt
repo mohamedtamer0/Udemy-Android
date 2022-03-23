@@ -9,6 +9,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.*
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.kotlin.toObservable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 import kotlin.math.log
@@ -31,30 +33,41 @@ class MainActivity : AppCompatActivity() {
     private fun foo() {
 
 
-        val observable = Observable.interval(1, TimeUnit.SECONDS).take(10).publish()
+        val list = listOf("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
 
-        observable.connect()
+        list.toObservable() // extension function for Iterables
+            .filter { it.length >= 5 }
+            .subscribeBy(  // named arguments for lambda Subscribers
+                onNext = { println(it) },
+                onError =  { it.printStackTrace() },
+                onComplete = { println("Done!") }
+            )
 
-        observable.subscribe(
-            { t ->
-                Log.d(TAG, "first observer : $t")
 
-            },
-            { e ->
-                Log.d(TAG, "error: ${e?.message}")
-            }
-        )
-        Thread.sleep(3500)
-
-        observable.subscribe(
-            { t ->
-                Log.d(TAG, "second observer : $t")
-
-            },
-            { e ->
-                Log.d(TAG, "error: ${e?.message}")
-            }
-        )
+//        val observable = Observable.interval(1, TimeUnit.SECONDS).take(10).publish()
+//
+//        observable.connect()
+//
+//        observable.subscribe(
+//            { t ->
+//                Log.d(TAG, "first observer : $t")
+//
+//            },
+//            { e ->
+//                Log.d(TAG, "error: ${e?.message}")
+//            }
+//        )
+//        Thread.sleep(3500)
+//
+//        observable.subscribe(
+//            { t ->
+//                Log.d(TAG, "second observer : $t")
+//
+//            },
+//            { e ->
+//                Log.d(TAG, "error: ${e?.message}")
+//            }
+//        )
 
 
 //        observable.toFlowable(BackpressureStrategy.LATEST).observeOn(Schedulers.io(), false, 5).subscribe(
