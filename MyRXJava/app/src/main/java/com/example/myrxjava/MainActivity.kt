@@ -30,33 +30,72 @@ class MainActivity : AppCompatActivity() {
 
     private fun foo() {
 
-        val maybe = Maybe.create<String> { emitter ->
-            binding.editTxt.doOnTextChanged { text, start, before, count ->
-                when(text.toString()) {
-                    "hello" -> emitter.onSuccess("hi,Welcome")
-                    "no" -> emitter.onComplete()
-                }
-            }
-        }
-        
-        maybe.subscribe(object : MaybeObserver<String> {
-            override fun onSubscribe(d: Disposable) {
-                Log.d(TAG, "onSubscribe: ")
-            }
 
-            override fun onSuccess(t: String) {
-                Log.d(TAG, "onSuccess: $t")
-            }
+        val observable = Observable.interval(1, TimeUnit.SECONDS).take(10).publish()
 
-            override fun onError(e: Throwable) {
-                Log.d(TAG, "onError: ${e?.message}")
-            }
+        observable.connect()
 
-            override fun onComplete() {
-                Log.d(TAG, "onComplete: ")
-            }
+        observable.subscribe(
+            { t ->
+                Log.d(TAG, "first observer : $t")
 
-        })
+            },
+            { e ->
+                Log.d(TAG, "error: ${e?.message}")
+            }
+        )
+        Thread.sleep(3500)
+
+        observable.subscribe(
+            { t ->
+                Log.d(TAG, "second observer : $t")
+
+            },
+            { e ->
+                Log.d(TAG, "error: ${e?.message}")
+            }
+        )
+
+
+//        observable.toFlowable(BackpressureStrategy.LATEST).observeOn(Schedulers.io(), false, 5).subscribe(
+//            { t ->
+//                Log.d(TAG, "next: $t")
+//            },
+//            {e ->
+//                Log.d(TAG, "error: ${e?.message} ")
+//            },{
+//                Log.d(TAG, "complete ")
+//            }
+//        )
+
+
+//        val maybe = Maybe.create<String> { emitter ->
+//            binding.editTxt.doOnTextChanged { text, start, before, count ->
+//                when(text.toString()) {
+//                    "hello" -> emitter.onSuccess("hi,Welcome")
+//                    "no" -> emitter.onComplete()
+//                }
+//            }
+//        }
+//
+//        maybe.subscribe(object : MaybeObserver<String> {
+//            override fun onSubscribe(d: Disposable) {
+//                Log.d(TAG, "onSubscribe: ")
+//            }
+//
+//            override fun onSuccess(t: String) {
+//                Log.d(TAG, "onSuccess: $t")
+//            }
+//
+//            override fun onError(e: Throwable) {
+//                Log.d(TAG, "onError: ${e?.message}")
+//            }
+//
+//            override fun onComplete() {
+//                Log.d(TAG, "onComplete: ")
+//            }
+//
+//        })
 
 
 //        val completable = Completable.create { emitter ->
