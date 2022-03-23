@@ -29,29 +29,59 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun foo() {
-        val completable = Completable.create { emitter ->
+
+        val maybe = Maybe.create<String> { emitter ->
             binding.editTxt.doOnTextChanged { text, start, before, count ->
-                if (text.toString() == "000") {
-                    emitter.onComplete()
+                when(text.toString()) {
+                    "hello" -> emitter.onSuccess("hi,Welcome")
+                    "no" -> emitter.onComplete()
                 }
             }
-
         }
-
-        completable.subscribe(object : CompletableObserver {
+        
+        maybe.subscribe(object : MaybeObserver<String> {
             override fun onSubscribe(d: Disposable) {
-
+                Log.d(TAG, "onSubscribe: ")
             }
 
-            override fun onComplete() {
-                Log.d(TAG, "onComplete")
+            override fun onSuccess(t: String) {
+                Log.d(TAG, "onSuccess: $t")
             }
 
             override fun onError(e: Throwable) {
-                Log.d(TAG, "onError")
+                Log.d(TAG, "onError: ${e?.message}")
+            }
+
+            override fun onComplete() {
+                Log.d(TAG, "onComplete: ")
             }
 
         })
+
+
+//        val completable = Completable.create { emitter ->
+//            binding.editTxt.doOnTextChanged { text, start, before, count ->
+//                if (text.toString() == "000") {
+//                    emitter.onComplete()
+//                }
+//            }
+//
+//        }
+//
+//        completable.subscribe(object : CompletableObserver {
+//            override fun onSubscribe(d: Disposable) {
+//
+//            }
+//
+//            override fun onComplete() {
+//                Log.d(TAG, "onComplete")
+//            }
+//
+//            override fun onError(e: Throwable) {
+//                Log.d(TAG, "onError")
+//            }
+//
+//        })
 
 
         val single = Single.just(5)
