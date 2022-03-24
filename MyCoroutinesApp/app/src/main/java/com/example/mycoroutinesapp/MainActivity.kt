@@ -14,19 +14,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(Dispatchers.IO) {
             fakeApiRequest()
         }
-        Log.d(TAG, "after Coroutine")
+
+
+        //Log.d(TAG, "after Coroutine")
 
 //        runBlocking {
 //            fakeApiRequest()
 //        }
     }
 
-    suspend fun fakeApiRequest(){
+    suspend fun fakeApiRequest() {
         delay(2500)
         Log.d(TAG, "fakeApiRequest")
+        Log.d(TAG, Thread.currentThread().name)
+        withContext(Dispatchers.Main) {
+            binding.txtView.text = "fake request"
+            Log.d(TAG, Thread.currentThread().name)
+        }
     }
 
     companion object {
