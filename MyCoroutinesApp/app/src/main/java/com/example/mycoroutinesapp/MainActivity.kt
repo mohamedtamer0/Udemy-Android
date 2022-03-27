@@ -17,20 +17,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var firstResponse: String? = null
-        var secondResponse: String? = null
+
 
         val jobParent = lifecycleScope.launch {
-            val job1 = launch { firstResponse = repeatLogs1() }
-            val job2 = launch { secondResponse = repeatLogs2() }
+            val deferred1 = async { repeatLogs1() }
+            val deferred2 = async { repeatLogs2() }
 
-            job1.join()
-            job2.join()
-            Log.d(TAG, firstResponse.toString())
-            Log.d(TAG, secondResponse.toString())
+            Log.d(TAG, deferred1.await())
+            Log.d(TAG, deferred2.await())
         }
-
-
 
 
         //Log.d(TAG, "after Coroutine")
