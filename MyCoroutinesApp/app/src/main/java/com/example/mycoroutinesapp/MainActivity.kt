@@ -48,7 +48,12 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun playWithCoroutine() {
-        job1 = lifecycleScope.launch {
+
+        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+            Log.d(TAG, throwable.message.toString())
+        }
+
+        job1 = lifecycleScope.launch(exceptionHandler) {
             delay(2000)
             job2 = launch {
                 delay(2000)
@@ -64,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
             job3 = launch {
                 delay(2000)
+                val result = 5 / 0
                 Log.d(TAG, "I am job3")
             }
             Log.d(TAG, "I am job1")
