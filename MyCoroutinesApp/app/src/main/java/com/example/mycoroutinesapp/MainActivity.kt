@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.example.mycoroutinesapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,82 +19,91 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        playWithFlow()
+    }
 
-//        val jobParent = lifecycleScope.launch {
-//            val deferred1 = async { repeatLogs1() }
-//            val deferred2 = async { repeatLogs2() }
+
+    private fun playWithFlow() {
+        val flow = flow<Int> {
+            for (i in 1..8) {
+                if (i == 5) {
+                    throw Exception("My Error")
+                }
+                emit(i)
+                delay(500)
+            }
+        }.flowOn(Dispatchers.Default)
+
+        lifecycleScope.launch {
+            flow.onCompletion {
+                Log.d(TAG, "Complete")
+            }.catch {
+                Log.d(TAG, it.message.toString())
+            }.collect {
+                Log.d(TAG, "collect($it)")
+            }
+        }
+    }
+
+
+    companion object {
+        private const val TAG = "Tamer"
+    }
+
+//    lateinit var job1: Job
+//    lateinit var job2: Job
+//    lateinit var job3: Job
+//    lateinit var job4: Job
+//    lateinit var job5: Job
 //
-//            Log.d(TAG, deferred1.await())
-//            Log.d(TAG, deferred2.await())
+//
+//    private fun playWithCoroutine() {
+//
+//        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+//            Log.d(TAG, throwable.message.toString())
 //        }
-
-
-        //Log.d(TAG, "after Coroutine")
-
-//        runBlocking {
-//            fakeApiRequest()
+//
+//        job1 = lifecycleScope.launch(exceptionHandler) {
+//            delay(2000)
+//            job2 = launch {
+//                delay(2000)
+//                Log.d(TAG, "I am job2")
+//                job4 = launch {
+//                    delay(2000)
+//                    Log.d(TAG, "I am job4")
+//                }
+//                job5 = launch {
+//                    delay(2000)
+//                    Log.d(TAG, "I am job5")
+//                }
+//            }
+//            job3 = launch {
+//                delay(2000)
+//                val result = 5 / 0
+//                Log.d(TAG, "I am job3")
+//            }
+//            Log.d(TAG, "I am job1")
 //        }
-
-        playWithCoroutine()
-        binding.btnCancel.setOnClickListener {
-            job4.cancel()
-        }
-    }
-
-    lateinit var job1: Job
-    lateinit var job2: Job
-    lateinit var job3: Job
-    lateinit var job4: Job
-    lateinit var job5: Job
+//    }
 
 
-    private fun playWithCoroutine() {
+//    suspend fun repeatLogs1(): String {
+//        delay(5000)
+//        return "response 1"
+//
+//
+////        delay(2500)
+////        withContext(Dispatchers.Main) {
+////            startActivity(Intent(this@MainActivity, SecondActivity::class.java))
+////            finish()
+////        }
+//
+//    }
 
-        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
-            Log.d(TAG, throwable.message.toString())
-        }
-
-        job1 = lifecycleScope.launch(exceptionHandler) {
-            delay(2000)
-            job2 = launch {
-                delay(2000)
-                Log.d(TAG, "I am job2")
-                job4 = launch {
-                    delay(2000)
-                    Log.d(TAG, "I am job4")
-                }
-                job5 = launch {
-                    delay(2000)
-                    Log.d(TAG, "I am job5")
-                }
-            }
-            job3 = launch {
-                delay(2000)
-                val result = 5 / 0
-                Log.d(TAG, "I am job3")
-            }
-            Log.d(TAG, "I am job1")
-        }
-    }
-
-
-    suspend fun repeatLogs1(): String {
-        delay(5000)
-        return "response 1"
-
-
-//        delay(2500)
-//        withContext(Dispatchers.Main) {
-//            startActivity(Intent(this@MainActivity, SecondActivity::class.java))
-//            finish()
-//        }
-
-    }
-
-    suspend fun repeatLogs2(): String {
-        delay(3000)
-        return "response 2"
-    }
+//    suspend fun repeatLogs2(): String {
+//        delay(3000)
+//        return "response 2"
+//    }
 
 
 //    suspend fun fakeApiRequest() {
@@ -106,9 +116,6 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
 
-    companion object {
-        private const val TAG = "Tamer"
-    }
 
 //
 //    override fun onDestroy() {
