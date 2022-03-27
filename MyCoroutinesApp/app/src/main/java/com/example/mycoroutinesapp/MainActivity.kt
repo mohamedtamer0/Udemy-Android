@@ -17,15 +17,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        var firstResponse: String? = null
+        var secondResponse: String? = null
 
         val jobParent = lifecycleScope.launch {
-            val job1 = launch { repeatLogs1() }
-            val job2 = launch { repeatLogs2() }
+            val job1 = launch { firstResponse = repeatLogs1() }
+            val job2 = launch { secondResponse = repeatLogs2() }
+
+            job1.join()
+            job2.join()
+            Log.d(TAG, firstResponse.toString())
+            Log.d(TAG, secondResponse.toString())
         }
 
-        binding.btnCancel.setOnClickListener {
-            jobParent.cancel()
-        }
+
 
 
         //Log.d(TAG, "after Coroutine")
@@ -36,9 +41,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    suspend fun repeatLogs1() {
+    suspend fun repeatLogs1(): String {
         delay(5000)
-        Log.d(TAG, "response 1")
+        return "response 1"
 
 
 //        delay(2500)
@@ -49,9 +54,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    suspend fun repeatLogs2() {
+    suspend fun repeatLogs2(): String {
         delay(3000)
-        Log.d(TAG, "response 2")
+        return "response 2"
     }
 
 
