@@ -11,15 +11,20 @@ import kotlinx.coroutines.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-    val customScope = CoroutineScope(Dispatchers.Default)
+    //val customScope = CoroutineScope(Dispatchers.Default)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        customScope.launch(Dispatchers.IO) {
-            repeatLogs()
+        val jobParent = lifecycleScope.launch {
+            val job1 = launch { repeatLogs1() }
+            val job2 = launch { repeatLogs2() }
+        }
+
+        binding.btnCancel.setOnClickListener {
+            jobParent.cancel()
         }
 
 
@@ -31,16 +36,22 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    suspend fun repeatLogs() {
-        delay(2500)
-        withContext(Dispatchers.Main) {
-            startActivity(Intent(this@MainActivity, SecondActivity::class.java))
-            finish()
-        }
-        while (true) {
-            Log.d(TAG, "Hi , it's working")
-            delay(1000)
-        }
+    suspend fun repeatLogs1() {
+        delay(5000)
+        Log.d(TAG, "response 1")
+
+
+//        delay(2500)
+//        withContext(Dispatchers.Main) {
+//            startActivity(Intent(this@MainActivity, SecondActivity::class.java))
+//            finish()
+//        }
+
+    }
+
+    suspend fun repeatLogs2() {
+        delay(3000)
+        Log.d(TAG, "response 2")
     }
 
 
@@ -58,9 +69,9 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "Tamer"
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-        customScope.cancel()
-    }
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        customScope.cancel()
+//    }
 }
