@@ -25,12 +25,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun playWithFlow() {
 
-        val mList = listOf("Hi","Hello", "Hey")
-        val mFlow = mList.asFlow().onEach {
-            delay(2000)
+
+        val mFlow = flow<Int> {
+            for (i in 1..8) {
+                emit(i)
+                delay(2000)
+            }
         }
         lifecycleScope.launch {
-            mFlow.collect{
+            mFlow.buffer().collect{
+                delay(2000)
                 Log.d(TAG, "Collect($it)")
             }
         }
