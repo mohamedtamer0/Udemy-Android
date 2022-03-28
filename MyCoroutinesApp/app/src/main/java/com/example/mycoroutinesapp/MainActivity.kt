@@ -24,23 +24,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun playWithFlow() {
-        val flow = flow<Int> {
-            for (i in 1..8) {
-                if (i == 5) {
-                    throw Exception("My Error")
-                }
-                emit(i)
-                delay(500)
-            }
-        }.flowOn(Dispatchers.Default)
 
+        val mList = listOf("Hi","Hello", "Hey")
+        val mFlow = mList.asFlow().onEach {
+            delay(2000)
+        }
         lifecycleScope.launch {
-            flow.onCompletion {
-                Log.d(TAG, "Complete")
-            }.catch {
-                Log.d(TAG, it.message.toString())
-            }.collect {
-                Log.d(TAG, "collect($it)")
+            mFlow.collect{
+                Log.d(TAG, "Collect($it)")
             }
         }
     }
