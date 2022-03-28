@@ -3,8 +3,8 @@ package com.example.myarchitecturepatterns.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.databinding.DataBindingUtil
+import com.example.myarchitecturepatterns.R
 import com.example.myarchitecturepatterns.databinding.ActivityMainBinding
 import com.example.myarchitecturepatterns.viewModels.MainViewModel
 
@@ -15,8 +15,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         setup()
 
     }
