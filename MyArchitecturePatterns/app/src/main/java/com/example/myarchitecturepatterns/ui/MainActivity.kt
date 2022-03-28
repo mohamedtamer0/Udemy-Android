@@ -2,18 +2,16 @@ package com.example.myarchitecturepatterns.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.example.myarchitecturepatterns.FakeApiService
-import com.example.myarchitecturepatterns.FakeDatabase
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.myarchitecturepatterns.databinding.ActivityMainBinding
-import com.example.myarchitecturepatterns.model.User
-import com.example.myarchitecturepatterns.model.Wisdom
-import com.example.myarchitecturepatterns.presenter.MainPresenter
+import com.example.myarchitecturepatterns.viewModels.MainViewModel
 
-class MainActivity : AppCompatActivity(), IMainView {
+class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-    private val presenter = MainPresenter()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,22 +22,22 @@ class MainActivity : AppCompatActivity(), IMainView {
     }
 
     private fun setup() {
-        presenter.view = this
-        presenter.getUserInfo()
+        viewModel.getUserInfo()
         binding.buttonFetchWisdom.setOnClickListener {
-            presenter.getAWisdom()
+            viewModel.getAWisdom()
         }
-    }
 
-    override fun onUserInfoSuccess(user: User) {
-        binding.textUserName.text = user.username
-    }
-
-    override fun onWisdomSuccess(wisdom: Wisdom) {
-        binding.apply {
-            textDate.text = wisdom.publishDate
-            textContent.text = wisdom.content
+        viewModel.currentUser.observe(this) {
+            binding.textUserName.text = it.username
         }
+
+        viewModel.wisdom.observe(this) {
+            binding.apply {
+                textDate.text = it.publishDate
+                textContent.text = it.content
+            }
+        }
+
     }
 
 
