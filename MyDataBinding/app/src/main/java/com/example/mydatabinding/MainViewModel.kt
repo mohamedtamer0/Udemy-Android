@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
-    val username = MutableLiveData<String>()
-    fun changeData() {
-        username.postValue("this is changes")
+    val color = MutableLiveData<MyColors>()
+    fun changeColorRandomly() {
+        color.postValue(MyColors.values().random())
     }
 }

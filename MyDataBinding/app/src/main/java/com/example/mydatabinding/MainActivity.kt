@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.username.observe(this) {
-            Log.d("Tamer", it)
-        }
+//        viewModel.username.observe(this) {
+//            Log.d("Tamer", it)
+//        }
     }
 }
