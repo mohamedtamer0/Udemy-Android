@@ -18,3 +18,12 @@ fun setMyColors(view: View, myColors: MyColors?) {
         MyColors.BLUE -> view.setBackgroundColor(ContextCompat.getColor(view.context, R.color.blue))
     }
 }
+
+@BindingAdapter(value = ["showIfTrue"])
+fun setCustomVisibility(view: View, value: Boolean?) {
+    if (value == true) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.GONE
+    }
+}
