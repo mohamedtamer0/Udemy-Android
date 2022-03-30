@@ -2,9 +2,9 @@ package com.example.myretrofitapp
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.myretrofitapp.model.JokeResponse
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.launch
 
 
 class MainViewModel : ViewModel() {
@@ -15,17 +15,9 @@ class MainViewModel : ViewModel() {
     }
 
     private fun getRandomJoke() {
-        API.apiService.getRandomJoke()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    joke.postValue(it)
-                },
-                {
-
-                }
-            )
+        viewModelScope.launch {
+            joke.postValue(API.apiService.getRandomJoke())
+        }
     }
 
 }
