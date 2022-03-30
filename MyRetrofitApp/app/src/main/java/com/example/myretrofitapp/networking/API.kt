@@ -1,16 +1,13 @@
 package com.example.myretrofitapp
 
-import com.example.myretrofitapp.model.JokeResponse
+import com.example.myretrofitapp.networking.JokeApiService
 import retrofit2.Retrofit
 
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
 
 
-interface JokeApiService {
-    @GET("joke/Any")
-   suspend fun getRandomJoke(): JokeResponse
-}
+
+
 
 object API {
     private val BASE_URL = "https://v2.jokeapi.dev/"

@@ -10,13 +10,15 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
     val joke = MutableLiveData<JokeResponse>()
 
+    val repository = JokeRepository()
+
     init {
         getRandomJoke()
     }
 
     private fun getRandomJoke() {
         viewModelScope.launch {
-            joke.postValue(API.apiService.getRandomJoke())
+            joke.postValue(repository.getRandomJoke())
         }
     }
 
