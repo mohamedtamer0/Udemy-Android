@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.myretrofitapp.MainViewModel" />
@@ -18,22 +19,47 @@
             android:id="@+id/text_setup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.joke.setup}"
+            android:text="@{viewModel.joke.toData().setup}"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenSuccess="@{viewModel.joke}" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.joke.delivery}"
-            android:textSize="18sp"
             android:layout_margin="16dp"
+            android:text="@{viewModel.joke.toData().delivery}"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@id/text_setup"
             app:layout_constraintStart_toStartOf="@id/text_setup"
             app:layout_constraintTop_toBottomOf="@id/text_setup"
-            />
+            app:showWhenSuccess="@{viewModel.joke}" />
+
+
+        <ImageView
+            android:id="@+id/image_error"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_baseline_error_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenError="@{viewModel.joke}" />
+
+        <ProgressBar
+            android:id="@+id/progress_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.joke}" />
+
 
         <Button
             android:layout_width="match_parent"
@@ -41,8 +67,7 @@
             android:layout_margin="8dp"
             android:onClick="@{() -> viewModel.getRandomJoke()}"
             android:text="get another joke"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
