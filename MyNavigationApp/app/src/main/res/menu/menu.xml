@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/AFragment"
+    android:icon="@drawable/ic_baseline_home_24"
+    android:title="page A"
+    />
+
+    <item
+        android:id="@+id/BFragment"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="page B"
+        />
+
+
+    <item
+        android:id="@+id/CFragment"
+        android:icon="@drawable/ic_baseline_music_note_24"
+        android:title="page C"
+        />
+
+    <item
+        android:id="@+id/DFragment"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="page D"
+        />
+
+</menu>
