@@ -1,6 +1,5 @@
 package com.example.myretrofitapp
 
-import com.example.myretrofitapp.model.JokeResponse
 import com.example.myretrofitapp.model.State
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
