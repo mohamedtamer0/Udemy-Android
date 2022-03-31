@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_a" >
         <action
             android:id="@+id/action_AFragment_to_BFragment"
-            app:destination="@id/BFragment" />
+            app:destination="@id/BFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_AFragment_to_CFragment"
             app:destination="@id/CFragment" />
@@ -21,7 +25,11 @@
         android:id="@+id/BFragment"
         android:name="com.example.mynavigationapp.BFragment"
         android:label="fragment_b"
-        tools:layout="@layout/fragment_b" />
+        tools:layout="@layout/fragment_b" >
+        <argument
+            android:name="testValue"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/CFragment"
         android:name="com.example.mynavigationapp.CFragment"
@@ -29,7 +37,9 @@
         tools:layout="@layout/fragment_c" >
         <action
             android:id="@+id/action_CFragment_to_DFragment"
-            app:destination="@id/DFragment" />
+            app:destination="@id/DFragment"
+            app:popUpTo="@id/CFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/DFragment"

@@ -23,7 +23,8 @@ class AFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonB.setOnClickListener { v ->
-            Navigation.findNavController(v).navigate(R.id.action_AFragment_to_BFragment)
+            val action = AFragmentDirections.actionAFragmentToBFragment("Hello World")
+            Navigation.findNavController(v).navigate(action)
 
         }
 
