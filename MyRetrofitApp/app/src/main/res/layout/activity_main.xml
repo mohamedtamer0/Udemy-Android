@@ -35,5 +35,14 @@
             app:layout_constraintTop_toBottomOf="@id/text_setup"
             />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:onClick="@{() -> viewModel.getRandomJoke()}"
+            android:text="get another joke"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

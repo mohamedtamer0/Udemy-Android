@@ -4,11 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myretrofitapp.model.JokeResponse
+import com.example.myretrofitapp.model.State
 import kotlinx.coroutines.launch
 
 
 class MainViewModel : ViewModel() {
-    val joke = MutableLiveData<JokeResponse>()
+    val joke = MutableLiveData<State<JokeResponse?>>()
 
     val repository = JokeRepository()
 
@@ -16,7 +17,7 @@ class MainViewModel : ViewModel() {
         getRandomJoke()
     }
 
-    private fun getRandomJoke() {
+    fun getRandomJoke() {
         viewModelScope.launch {
             repository.getRandomJoke().collect {
                 joke.postValue(it)
