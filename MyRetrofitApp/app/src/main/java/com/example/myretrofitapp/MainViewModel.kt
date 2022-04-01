@@ -8,20 +8,9 @@ import kotlinx.coroutines.launch
 
 
 class MainViewModel : ViewModel() {
-    val joke = MutableLiveData<State<JokeResponse?>>()
 
-    val repository = JokeRepository()
+    private val repository = JokeRepository()
 
-    init {
-        getRandomJoke()
-    }
 
-    fun getRandomJoke() {
-        viewModelScope.launch {
-            repository.getRandomJoke().collect {
-                joke.postValue(it)
-            }
-        }
-    }
 
 }

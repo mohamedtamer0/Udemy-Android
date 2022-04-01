@@ -1,7 +1,9 @@
 package com.example.myretrofitapp.utils
 
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.example.myretrofitapp.model.State
 
 @BindingAdapter(value = ["app:showWhenLoading"])
@@ -31,4 +33,9 @@ fun <T> showWhenSuccess(view: View, state: State<T>?) {
     } else {
         view.visibility = View.GONE
     }
+}
+
+@BindingAdapter(value = ["app:imageUrl"])
+fun setImageFromUrl(view: ImageView,url:String?){
+    Glide.with(view).load(url).centerCrop().into(view)
 }
